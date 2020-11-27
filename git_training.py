@@ -37,12 +37,39 @@ def L1_sort(L):
     return L
 
 
-def L2_sort(L):
+def L2_sort(arr):
     """ 第二位任務：
         將 L2 進行升序排序，排序演算法不限，唯禁止使用內建或第三方函式庫的 sort
     """
+    if len(arr) > 1 :
+        mid = len(arr) // 2
+        Larr = arr[:mid]
+        Rarr = arr[mid:]
 
-    return L
+        mergesort(Larr)
+        mergesort(Rarr)
+
+        i = j = digit = 0
+
+        while i < len(Larr) and j < len(Rarr):
+            if Larr[i] < Rarr[j]:
+                arr[digit] = Larr[i]
+                i += 1
+            else:
+                arr[digit] = Rarr[j]
+                j += 1
+            digit += 1
+
+        while i < len(Larr):
+            arr[digit] = Larr[i]
+            i += 1
+            digit += 1
+
+        while j < len(Rarr):
+            arr[digit] = Rarr[j]
+            j += 1
+            digit += 1
+    return arr
 
 
 def list_processing(L1, L2):
