@@ -1,5 +1,29 @@
 import hashlib
 
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+def insert(root, key):
+    if root is None:
+        return Node(key)
+    else:
+        if root.val == key:
+            return root
+        elif root.val < key:
+            root.right = insert(root.right, key)
+        else:
+            root.left = insert(root.left, key)
+    return root
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.val)
+        inorder(root.right)
+
 L1 = [8184, 6142, 5299, 5084, 459, 7072, 9702, 7469, 2543, 3581, 3740, 7167, 6507, 1981, 2744, 5409, 1787, 4733, 9578,
       2733, 4165, 7558, 6436, 4160, 7676, 9229, 6920, 1234, 2885, 3663, 5195, 2559, 1751, 6325, 8220, 4555, 8155, 6889,
       6601, 4054, 8533, 2931, 5566, 7461, 3256, 2272, 4314, 2991, 8327, 4176, 7090, 3258, 2275, 8283, 4477, 579, 6428,
@@ -94,6 +118,11 @@ def binary_tree(L):
     """ 第四位任務：
         將 L1’ 與 L2’ 交集後的結果建成 binary tree(盡可能平衡) 並輸出
     """
+    number=len(L)
+    tree=Node(L[0])
+    for i in range(1,number+1):
+        tree=insert(tree,l[i])
+    inorder(tree)
     pass
 
 
